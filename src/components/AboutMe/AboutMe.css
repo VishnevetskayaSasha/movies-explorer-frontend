@@ -1,0 +1,144 @@
+.me__content{
+  max-width: 1140px;
+  margin: 110px auto;
+  padding: 0 70px;
+}
+.me__title{
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26.63px;
+  margin: 0;
+}
+.me__description{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 66px;
+}
+.me__about{
+  max-width: 600px;
+}
+.me__name{
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  margin: 0;
+}
+.me__text{
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  margin: 18px 0 26px;
+}
+.me__text-mini{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+
+}
+.me__social-list{
+  margin-top: 150px;
+}
+.me__social-item{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity 1s;
+}
+.me__social-item:hover{
+  opacity: 0.4;
+}
+.me__social-item:first-child{
+  margin-right: 20px;
+}
+.me__photo{
+  width: 400px;
+  margin-left: 25px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1000px){
+  .me__content{
+    max-width: 668px;
+    margin: 90px auto;
+    padding: 0 50px;
+  }
+  .me__about{
+    max-width: 364px;
+  }
+  .me__name{
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .me__text{
+    font-size: 12px;
+    line-height: 18px;
+    margin: 16px 0 20px;
+  }
+  .me__text-mini{
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .me__social-list{
+    margin-top: 90px;
+  }
+  .me__photo{
+    width: 320px;
+    height: 340px;
+    margin-left: 49px;
+  }
+}
+
+@media screen and (max-width: 670px){
+  .me__description{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 60px;
+  }
+  .me__photo{
+    margin-left: 0;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 515px){
+  .me__content{
+    max-width: 292px;
+    margin: 70px auto;
+    padding: 0 14px;
+  }
+  .me__title{
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .me__about{
+    max-width: 364px;
+  }
+  .me__name{
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .me__text{
+    font-size: 11px;
+    line-height: 16px;
+    margin: 20px 0;
+  }
+  .me__text-mini{
+    font-size: 11px;
+    line-height: 16px;
+    mix-blend-mode: normal;
+  }
+  .me__social-list{
+    margin-top: 40px;
+  }
+  .me__photo{
+    width: 100%;
+    height: 100%;
+  }
+  .me__social-item:first-child{
+    margin-right: 26px;
+  }
+}
