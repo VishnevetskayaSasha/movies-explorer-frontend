@@ -17,17 +17,11 @@
 .portfolio__items{
   list-style-type: none;
 }
-.portfolio__item{
+
+.portfolio_link{
   display: flex;
   justify-content: space-between;
   text-align: center;
-}
-.portfolio_link{
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 50px;
-  letter-spacing: -0.04em;
-  color: #000000;
   text-decoration: none;
   margin: 0;
   opacity: 1;
@@ -35,6 +29,14 @@
 }
 .portfolio_link:hover{
   opacity: 0.4;
+}
+.portfolio__text{
+  margin: 0;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #000000;
 }
 .line-grey{
  margin: 20px 0;
@@ -48,7 +50,7 @@
     margin: 0 auto 90px;
     padding: 0 50px;
   }
-  .portfolio_link{
+  .portfolio__text{
     font-size: 28px;
   }
   .line-grey{
@@ -67,7 +69,7 @@
     font-size: 14px;
     margin-bottom: 40px;
   }
-  .portfolio_link{
+  .portfolio__text{
     font-size: 18px;
     line-height: 28px;
   }

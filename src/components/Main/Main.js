@@ -11,14 +11,16 @@ import { Footer } from "../Footer/Footer"
 
 export function Main() {
   return (
-    <main className='main'>
+    <div className='content'>
       <Header />
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
+      <main className='main'>
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
       <Footer />
-    </main>
+    </div>
   )
 }

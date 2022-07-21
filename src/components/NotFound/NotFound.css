@@ -1,4 +1,7 @@
 .not-found{
+  background-color: #FFFFFF;
+}
+.not-found__content{
   max-width: 400px;
   margin: auto;
   text-align: center;
@@ -31,7 +34,7 @@
 }
 
 @media screen and (max-width: 1000px){
-  .not-found{
+  .not-found__content{
     max-width: 400px;
   }
   .not-found__error{
@@ -45,7 +48,7 @@
 }
 
 @media screen and (max-width: 515px){
-  .not-found{
+  .not-found__content{
     max-width: 300px;
   }
   .not-found__error{
