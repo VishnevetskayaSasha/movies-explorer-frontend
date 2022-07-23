@@ -1,0 +1,140 @@
+.project__conteiner{
+  padding: 0 70px;
+  max-width: 1140px;
+  margin: 110px auto;
+}
+.project__title{
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26.63px;
+  margin: 0;
+}
+.line{
+  width: 100%;
+  margin-top: 23px;
+  height: 1px;
+}
+.priject__content{
+  display: flex;
+  margin: 70px 0 110px;
+}
+.project__block{
+  width: 550px;
+}
+.project__block:first-child{
+  margin-right: 40px;
+}
+.project__block-title{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  margin: 0 0 26px;
+}
+.project__block-text{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+.project__time{
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+.project__time-title{
+  text-align: center;
+  font-size: 14px;
+  line-height: 16.94px;
+  margin: 0;
+}
+.project__time-title_back{
+  background-color:#3456F3;
+  padding: 9px 0;
+  color: #FFFFFF;
+}
+.project__time-title_front{
+  background-color: #F2F2F2;
+  padding: 9px 0;
+
+}
+.project__time-subtitle{
+  text-align: center;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  color:#A0A0A0;
+}
+
+@media screen and (max-width: 1000px){
+  .project__conteiner{
+    padding: 0 50px;
+    max-width: 668px;
+    margin: 90px auto;
+  }
+  .priject__content{
+    margin: 60px 0;
+  }
+  .project__block{
+    width: 320px;
+  }
+  .project__block:first-child{
+    margin-right: 30px;
+  }
+  .project__block-text{
+    font-size: 12px;
+    line-height: 18px;
+  } 
+  .project__block-title{
+    margin: 0 0 23px;
+  }
+}
+
+@media screen and (max-width: 515px){
+  .project__conteiner{
+    padding: 0 18px;
+    max-width: 284px;
+    margin: 70px auto;
+  }
+  .priject__content{
+    margin: 70px 0 60px;
+    flex-direction: column;
+  }
+  .project__block{
+    width: 282px;
+  }
+  .project__block:first-child{
+    margin-right: 0;
+    margin-bottom: 56px;
+  }
+  .project__block-text{
+    font-size: 11px;
+    line-height: 16px;
+    max-width: 282px;
+  } 
+  .project__block-title{
+    margin: 0 0 16px;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    max-width: 284px;
+  }
+  .project__time{
+    grid-template-columns: 30% 70%;
+  }
+  .project__time-title{
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .project__time-title_back{
+    padding: 11px 0;
+  }
+  .project__time-title_front{
+    background-color: #F2F2F2;
+    padding: 11px 0;
+  
+  }
+  .project__time-subtitle{
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
