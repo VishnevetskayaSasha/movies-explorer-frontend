@@ -2,25 +2,43 @@
   width: 270px;
   box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
+  height: 234px;
+  display: block;
+  position: relative;
+}
+.movie__img-block{
+  background-color: rgba(221, 222, 227, 1);
 }
 .movie__img{
-  width: 100%;
-
+  max-width: 100%;
+  height: 151px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: block;
+  margin: 0 auto;
 }
 .movie__description{
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 14px 12px 10px 12px;
   margin: 0;
-
 }
+
 .movie__title{
   margin: 0;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-self:center;
+}
+.movie__title:hover{
+  background-color: #FAFAFA;;
+  white-space: normal;
+  z-index: 12;
 }
 .movie__like{
   border: none;
@@ -34,6 +52,7 @@
 }
 .movie__like:hover{
   cursor: pointer;
+  align-items: flex-start;
 }
 .movie__add-active{
   background-image: url("/src/images/add-active.svg");
@@ -52,6 +71,7 @@
 }
 .movie__delite-active{
   background-image: url("/src/images/delete.svg");
+  margin-top: 5px;
 }
 .movie__delite-active:hover{
   cursor: pointer;
@@ -60,8 +80,10 @@
   font-size: 11px;
   line-height: 13px;  
   color: #A0A0A0;
-  padding: 0 0 14px 12px;
   margin: 0;
+  position: absolute;
+  left: 12px;
+  bottom: 14px;
 }
 
 @media screen and (max-width: 1200px){

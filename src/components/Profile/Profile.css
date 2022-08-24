@@ -55,6 +55,10 @@
   margin-top: 18px;
 }
 
+.profile__message{
+  color: rgba(52, 86, 243, 1);
+
+}
 @media screen and (max-width: 460px){
   .profile__container{
     max-width: 260px;

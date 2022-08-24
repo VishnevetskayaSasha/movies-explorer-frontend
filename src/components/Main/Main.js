@@ -7,12 +7,16 @@ import { Techs } from '../Techs/Techs';
 import { AboutMe } from '../AboutMe/AboutMe';
 import { Portfolio } from '../Portfolio/Portfolio'
 import { Footer } from "../Footer/Footer"
+import { HeaderAuth } from '../HeaderAuth/HeaderAuth';
 
 
 export function Main() {
+
+  const jwt = localStorage.getItem("jwt");
+  console.log("jwt", jwt)
   return (
     <div className='content'>
-      <Header />
+      {jwt ? <HeaderAuth/> : <Header/>}
       <main className='main'>
         <Promo />
         <AboutProject />

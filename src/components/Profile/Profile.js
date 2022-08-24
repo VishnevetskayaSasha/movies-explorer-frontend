@@ -1,34 +1,48 @@
 import React from 'react';
 import './Profile.css';
 import { HeaderAuth } from "../HeaderAuth/HeaderAuth";
-import { NavLink } from 'react-router-dom';
-
-
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useValidaty } from '../../utils/useValidaty';
 
 export function Profile(props) {
-  const currentUser = {
-    'name': 'Caша',
-    'email': 'Sasha@gmail.com'
+  const {values, isValid, setValues, errors,  handleChange, resetForm} = useValidaty();
+  const currentUser = React.useContext(CurrentUserContext);
+  const [isInputs, setisInputs] = React.useState(false);
+
+  const { email, name } = values;
+
+  React.useEffect(() => {
+    setValues({
+      email: currentUser.email,
+      name: currentUser.name,
+    });
+  }, [currentUser]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.onUpdateProfile(name, email);
   };
-  const [ values, setValues ] = React.useState({});
-  const [isCorrectly, setIsCorrectly] = React.useState(true);
 
-  function handleChange(evt) {
-    const {name, value} = evt.target;
-    setValues({...values, [name]: value });
-}
+  React.useEffect(() => {
+    const { name, email } = values;
+    if (
+      isValid &&
+      (currentUser.name !== name || currentUser.email !== email)
+    )  {
+      setisInputs(false);
+    } else {
+      setisInputs(true);
+    }
+  }, [currentUser, values]);
 
-function handleSubmit(evt) {
-    evt.preventDefault();
-    props.onSubmit({name: values.name, email: values.email})
-} 
-
+  console.log()
   return (
       <section className="profile">
         <HeaderAuth />
         <div className="profile__container">
           <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
-          <form className="profile__form" name='profile' onSubmit={handleSubmit}>
+          <form className="profile__form" name='profile' disabled={props.isFormDisabled}
+               onSubmit={handleSubmit}>
             <label className="profile__label">
               <span className="profile__name">Имя</span>
               <input
@@ -36,13 +50,13 @@ function handleSubmit(evt) {
                 name="name"
                 type="name"
                 onChange={handleChange}
-                value={currentUser.name || ''}
+                value={name || ''}
                 minLength="2"
                 maxLength="40"
                 required
               />
             </label>
-            <span className={`form__error-message ${!isCorrectly ? "form__error-message-active" : "" }`}>Что-то пошло не так...</span>
+            <span className={`form__error-message ${errors.name  ? "form__error-message-active" : "" }`}>{errors.name}</span>
             <label className="profile__label">
               <span className="profile__name">E-mail</span>
               <input
@@ -50,14 +64,21 @@ function handleSubmit(evt) {
                 name="email"
                 type="email"
                 onChange={handleChange}
-                value={currentUser.email || ''}
+                value={email || ''}
                 minLength="2"
                 maxLength="40"
                 required
               />
             </label>
-            <span className={`form__error-message ${!isCorrectly ? "form__error-message-active" : "" }`}>Что-то пошло не так...</span>
+            <span className={`form__error-message ${errors.email ? "form__error-message-active" : "" }`}>{errors.email}</span>
+            {props.isEditError && (
+            <p className="profile__message">{props.setMessageProfile}</p>
+          )}
+          {props.isEditDone && (
+            <p className="profile__message">{props.setMessageProfile}</p>
+          )}
             <button
+              disabled={!(isInputs ? false : isValid) ? true : ""}
               type="submit"
               className='profile__button'>
               Редактировать
@@ -70,3 +91,5 @@ function handleSubmit(evt) {
       </section>
     );
   }
+
+ 

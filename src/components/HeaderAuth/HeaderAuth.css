@@ -1,6 +1,9 @@
 .header-auth{
   background-color: #FAFAFA;
 }
+.header-auth-main{
+  background-color: #DDDEE3;
+}
 .header-auth__content{
   max-width: 1140px;
   display: flex;

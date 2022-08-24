@@ -1,0 +1,12 @@
+.movies{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.movies__err-message{
+  max-width: 60%;
+  flex-grow: 1;
+  margin: 0 auto;
+  color: rgba(52, 86, 243, 1);
+}
