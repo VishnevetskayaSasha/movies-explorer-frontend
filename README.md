@@ -20,3 +20,4 @@
 # Ссылки
 - [Ссылка на макет диплома](https://www.figma.com/file/sMKJgYOvuQ2e17CCQ0Mmwe/My-Diploma?node-id=932%3A4079);
 - frontend проекта: https://sashavishnea.movies.nomoredomains.xyz;
+- Pull request: https://github.com/VishnevetskayaSasha/movies-explorer-frontend/pull/2 
