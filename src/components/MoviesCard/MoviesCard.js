@@ -1,9 +1,6 @@
 import './MoviesCard.css';
-import React, { useContext, useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
-import { mainApi } from '../../utils/MainApi';
-import TooltipContext from '../../contexts/TooltipContext';
-import { MOVIES_SERVER_URL } from '../../constants/constants';
+import React from "react";
+import { HOUR_DURATION } from "../../constants/constants"
 
 function MoviesCard({
   onRemove,
@@ -13,8 +10,8 @@ function MoviesCard({
   
     const getFormattedDuration = () => {
         const duration = {};
-        duration['hours'] = Math.floor(movie.duration / 60);
-        duration['minutes'] = movie.duration % 60;
+        duration['hours'] = Math.floor(movie.duration / (HOUR_DURATION));
+        duration['minutes'] = movie.duration % (HOUR_DURATION);
         return duration;
     }
 

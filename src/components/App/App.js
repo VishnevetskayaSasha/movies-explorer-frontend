@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation, useNavigate}  from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate, Navigate}  from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { Main } from "../Main/Main";
 import { Login } from '../Login/Login'
@@ -43,14 +43,14 @@ function App() {
   const [searchWord, setSearchWord] = React.useState(""); 
 
   React.useEffect(() => {
-    moviesApi.getAllMovies()
+   /* moviesApi.getAllMovies()
     .then((movies) => {
       setMovieList(movies)
     })
     .catch((err) => {
       console.log(err);
       setMessageSearchResult(SERVER_ERR);
-    })
+    }) */
 
     mainApi.getMoviesSaved()
     .then((event) => {
@@ -65,7 +65,7 @@ function App() {
   React.useEffect(() => {
     if (jwt) {
       handleIsToken();
-    }    
+    } 
   }, 
   [jwt, navigate, location.pathname]);  
   
@@ -97,6 +97,7 @@ function App() {
       })
       .catch((err) => {
           console.error(err);
+          handleSignOut() //тест выхода из аккаунта после протухания токена
       })
       .finally(()=> setlogOn(false));
   }
@@ -170,6 +171,7 @@ function App() {
       .finally(()=> {
         setFormDisabled(false);
         setIsEditError(false);
+        setTimeout(() =>  setMessageProfile(), 1300);
       });
   }
 
@@ -322,12 +324,21 @@ function App() {
         <div className="page">
           <Routes>
             <Route exact path="/" element={ <Main />}></Route>
-            <Route exact path="/signin" element={<Login handleIsLogin={handleIsLogin} islogOn={islogOn} isAuth={isAuth} setIsAuth={setIsAuth}
+            <Route exact path="/signin" element={ jwt ? <Navigate to="/" /> : <Login handleIsLogin={handleIsLogin} islogOn={islogOn} isAuth={isAuth} setIsAuth={setIsAuth}
             setFormDisabled={isFormDisabled} isEditError={isEditError} setMessageErr={isMessageErr}
               />}/>
-            <Route exact path="/signup" element={<Register handleIsRegister={handleIsRegister} isEditError={isEditError} setMessageErr={isMessageErr} 
+            <Route exact path="/signup" element={ jwt ? <Navigate to="/" /> : <Register handleIsRegister={handleIsRegister} isEditError={isEditError} setMessageErr={isMessageErr} 
             setFormDisabled={isFormDisabled} isAuth={isAuth} setIsAuth={setIsAuth}/>}/>
-            <Route exact path="/profile" element={<Profile onUpdateProfile={handleUpdateProfile} setFormDisabled={isFormDisabled} setMessageProfile={isMessageProfile} onSignOut={handleSignOut} isEditDone={isEditDone} isEditError={isEditError} />}/>
+            <Route 
+              exact 
+              path="/profile" 
+              element={
+                <PrivateRoute allowed={jwt}>
+                  <Profile onUpdateProfile={handleUpdateProfile} setFormDisabled={isFormDisabled} setMessageProfile={isMessageProfile} onSignOut={handleSignOut} isEditDone={isEditDone} isEditError={isEditError} 
+                  />
+                </PrivateRoute>
+              }
+            />
             <Route 
               exact 
               path="/movies" 

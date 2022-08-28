@@ -14,8 +14,8 @@ export function Movies() {
   const defaultSearchedMovies = useMemo(() => JSON.parse(localStorage.getItem("searchedMovies")) || [], [])
   const defaultSearchValue = useMemo(() => JSON.parse(localStorage.getItem("searchValue")) || "", [])
   const defaultIsShortMovies = useMemo(() => JSON.parse(localStorage.getItem("isShortMovies")) || false, [])
-
   const [allMovies, setAllMovies] = useState([]);
+ // const [allMoviesLocal, setAllMoviesLocal] = useState([]);
   const [searchedMovies, setSearchedMovies] = useState(defaultSearchedMovies);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,19 +62,29 @@ export function Movies() {
     })  
   }
 
+
   const loadAllMovies = async () => {
     try {
-      const allMovies = await moviesApi.getAllMovies()
+      let localFilm = JSON.parse(localStorage.getItem("allMoviesLocal")); //получаем данные через переменную 
+      console.log(typeof localFilm, localFilm)
+      if(!localFilm?.length) {
+        localFilm = await moviesApi.getAllMovies() // фильмы с сервера
+        localStorage.setItem("allMoviesLocal", JSON.stringify(localFilm)); //записываем данные с сервера в localStorage
+      }
 
-      setAllMovies(allMovies.map((movie) => ({
+      setAllMovies(localFilm.map((movie) => ({
         ...movie,
         image: MOVIES_SERVER_URL + movie.image.url,
       })))
-      return allMovies;
+      return localFilm;
     } catch (err) {
       setErrorMessage(SERVER_ERR);
     }
   }
+
+ 
+  
+
   const loadSavedMovies = async () => {
     try {
       const savedMovies = await mainApi.getMoviesSaved()

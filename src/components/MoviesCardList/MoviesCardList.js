@@ -1,6 +1,17 @@
 import React from "react";
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
+import {
+  NUMBER_OF_FILMS_DESK,
+  NUMBER_OF_FILMS_TABLET,
+  NUMBER_OF_FILMS_MOB,
+  MORE_OF_FILMS_BIGDESK,
+  MORE_OF_FILMS_DESK,
+  MORE_OF_FILMS_TABLET_MOB,
+  WIDTH_SCREEN_BIGDESK,
+  WIDTH_SCREEN_DESK,
+  WIDTH_SCREEN_TABLET,
+} from "../../constants/constants"
 
 
 export function MoviesCardList( {
@@ -16,18 +27,18 @@ export function MoviesCardList( {
     const [additionMoviesCount, setAdditionMoviesCount] = React.useState(0); // количество карточек которые добаляются
 
     function handleMoviesCount() {
-        if (document.documentElement.clientWidth > 1200) {
-            setMoviesCount(12); // кол-во на странице
-            setAdditionMovies(4); //кол-во добавлений
-        }  else if (document.documentElement.clientWidth > 1136) {
-            setMoviesCount(12);
-            setAdditionMovies(3);
-        } else if (document.documentElement.clientWidth > 767) {
-            setMoviesCount(8);
-            setAdditionMovies(2);
+        if (document.documentElement.clientWidth > (WIDTH_SCREEN_BIGDESK)) {
+            setMoviesCount(NUMBER_OF_FILMS_DESK); // кол-во на странице
+            setAdditionMovies(MORE_OF_FILMS_BIGDESK); //кол-во добавлений
+        }  else if (document.documentElement.clientWidth > (WIDTH_SCREEN_DESK)) {
+            setMoviesCount(NUMBER_OF_FILMS_DESK);
+            setAdditionMovies(MORE_OF_FILMS_DESK);
+        } else if (document.documentElement.clientWidth > (WIDTH_SCREEN_TABLET)) {
+            setMoviesCount(NUMBER_OF_FILMS_TABLET);
+            setAdditionMovies(MORE_OF_FILMS_TABLET_MOB);
         } else {
-            setMoviesCount(5);
-            setAdditionMovies(2);
+            setMoviesCount(NUMBER_OF_FILMS_MOB);
+            setAdditionMovies(MORE_OF_FILMS_TABLET_MOB);
         }
     }
 

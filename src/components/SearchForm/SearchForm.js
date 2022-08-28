@@ -16,38 +16,7 @@ export function SearchForm ({
   
   const [searchValue, setSearchValue] = useState(defaultSearchValue);
   const [isShortMovies, setIsShortMovies] = useState(defaultIsShortMovies);
-
-  // const isLocationMovies = useLocation().pathname === '/movies';
-  
-  // function handelIsSearchMovies(evt) {
-  //     if (isLocationMovies) {
-  //         props.setSearchMovies(evt.target.value);
-  //     } else {
-  //       props.onGetMovies();
-  //       props.setSearchSavedMovies(evt.target.value);
-  //     }
-  // }
-
-  // function handleSubmit(evt) {
-      
-  //     evt.preventDefault();
-
-  //     if (isLocationMovies) {
-  //         if (!props.searchMovies ) {
-  //             props.setMessageSearchResult(NOT_WORD_MOWIES);
-  //             return;
-  //         }
-  //     } else {
-  //         if (!props.searchSavedMovies ) {
-  //             props.setMessageSearchResult(NOT_WORD_MOWIES);
-  //             return;
-  //         }
-  //     }
-  //     props.setMessageSearchResult(null);
-  //     props.setIsPreloader(true);
-  //     props.onGetMovies();
-  //     setTimeout(() =>  props.setIsPreloader(false), 700);
-  //   }
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value)
@@ -62,13 +31,30 @@ export function SearchForm ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit?.(searchValue, isShortMovies)
-  }
+    if (onSubmit) {
+      onSubmit(searchValue, isShortMovies)
+      showErrorMessage();
+      setTimeout(() =>  setErrorMessage(), 1300);
+    }
+   }
+
+   useEffect(() => {
+    if (searchValue !== '') {
+      showErrorMessage();
+    }
+  }, [searchValue]);
   
+    function showErrorMessage() {
+      if (searchValue === '') {
+        setErrorMessage(NOT_WORD_MOWIES);
+      }
+    }
+    
+
   return (
     <div className="search">
       <div className="search__content">
-      <form onSubmit={handleSubmit} name="search-films" className="search__form">
+      <form onSubmit={handleSubmit} name="search-films" className="search__form" noValidate>
         <div className="search__container">
           <input 
             id="search" 
@@ -78,7 +64,7 @@ export function SearchForm ({
             value={searchValue}
             required
             onChange={handleInputChange}
-            minLength={2}
+            minLength={1}
             placeholder="Фильм"
           />
           <button
@@ -90,6 +76,9 @@ export function SearchForm ({
       </form> 
       <FilterCheckbox onChange={handleIsShortMoviesChanged} isChecked={isShortMovies} />
       </div>
+      <span className="profile__message">
+          {errorMessage}
+        </span>
       <img className='line-grey' alt="Линия" src={lineGrey}/>
     </div>
   )
