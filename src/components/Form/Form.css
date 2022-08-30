@@ -94,6 +94,10 @@
   visibility: visible;
 }
 
+.form__button_inactive{
+  background-color: gray;
+}
+
 @media screen and (max-width: 460px){
   .form__content{
     max-width: 260px;

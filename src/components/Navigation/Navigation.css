@@ -18,6 +18,10 @@
   margin-right: 16px;
 }
 
+.active {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 1000px){
   .navigation{
     display: none;

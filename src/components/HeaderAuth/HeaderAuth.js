@@ -20,7 +20,7 @@ export function HeaderAuth () {
   }
 
   return (
-    <header className='header-auth'>
+    <header className={`header-auth ${isLocationMain ? "header-auth-main" : ""}`}> 
       <div className='header-auth__content'>
         <div className="header-auth__container">
           <Link to="/">

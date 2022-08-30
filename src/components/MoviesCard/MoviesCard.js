@@ -1,45 +1,54 @@
 import './MoviesCard.css';
 import React from "react";
-import { useLocation } from 'react-router-dom';
+import { HOUR_DURATION } from "../../constants/constants"
 
-function MoviesCard(props) {
+function MoviesCard({
+  onRemove,
+  onLikeClick,
+  movie,
+}) {
+  
+    const getFormattedDuration = () => {
+        const duration = {};
+        duration['hours'] = Math.floor(movie.duration / (HOUR_DURATION));
+        duration['minutes'] = movie.duration % (HOUR_DURATION);
+        return duration;
+    }
 
-  const location = useLocation();
-  const isLocationMoviesSaved = location.pathname === '/saved-movies';
+    const handleLikeClick = () => {
+      onLikeClick(movie)
+    }
 
-  const [isAddCard, setAddACardSaved ] = React.useState(false);
-  const [isDeleteCard, setIsDeleteCard] = React.useState(true);
-
-  function handleAddSaved() {
-      isAddCard ? setAddACardSaved(false) : setAddACardSaved(true);
-  }
-
-  function handleDeleteSaved() {
-      setAddACardSaved(false);
-  }
-
+    const handleRemove = () => {
+      onRemove(movie)
+    }
 
   return (
       <li className="movie__item">
-        <img src={props.img} alt="Кадр из фильма" className="movie__img"/>
+        {/* <img alt="Кадр из фильма" src={isLocationMoviesSaved ?   props.movie.image : MOVIES_SERVER_URL + props.movie.image.url} className="movie__img"/> */}
+        <div className='movie__img-block'>
+          <a rel="noreferrer" target="_blank" href={movie.trailerLink}>
+            <img alt="Кадр из фильма" src={movie.image} className="movie__img"/>
+          </a>
+        </div>
         <div className="movie__description">
-          <h2 className="movie__title">33 слова о дизайне</h2>
-          { isLocationMoviesSaved &&
+          <h2 className="movie__title">{movie.nameRU}</h2>
+          { onLikeClick && 
               <button
-              type="button" // кнопка удаления из избранного
-              className="movie__delite movie__delite-active"
-              onClick={handleDeleteSaved}
+              type="button" 
+              className={`movie__like ${movie.isLiked ? "movie__add-active" : "movie__add"}`}
+              onClick={handleLikeClick}
               ></button>
           }
-          { !isLocationMoviesSaved && // кнопка сохранения в избранное
+          { onRemove && 
             <button
             type="button"
-            className={`movie__like ${props.isAddCard ? "movie__add-active" : "movie__add"}`}
-            onClick={handleAddSaved}
+            className="movie__delite movie__delite-active"
+            onClick={handleRemove}
             ></button>
           }
         </div>
-        <p className="movie__duration">1ч42м</p>
+        <p className="movie__duration">{`${ getFormattedDuration().hours !== 0 ? `${getFormattedDuration().hours}ч ` : "" } ${getFormattedDuration().minutes}м`}</p>
       </li>
       )
 

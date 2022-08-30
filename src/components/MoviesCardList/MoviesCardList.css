@@ -1,6 +1,7 @@
 .movies-list{
   max-width: 1140px;
   margin: 0 auto;
+  flex-grow: 1;
 }
 .movies-list__items{
   list-style-type: none;
